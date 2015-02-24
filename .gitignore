@@ -1,0 +1,4 @@
+newvirtualenv
+
+*.pyc
+localsettings.py
