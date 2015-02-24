@@ -102,6 +102,6 @@ REST_FRAMEWORK = {
 }
 
 try:
-    import * from localsettings
+    from localsettings import *
 except:
     pass
