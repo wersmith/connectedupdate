@@ -8,9 +8,10 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
+        
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -25,7 +26,10 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # should use os.environ['SECRET_KEY'] in Production
-SECRET_KEY = os.environ['SECRET_KEY']
+try:
+    SECRET_KEY = os.environ['SECRET_KEY']
+except:
+    pass
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -69,8 +73,11 @@ WSGI_APPLICATION = 'connectedupdate.wsgi.application'
 
 # SECURITY WARNING: keep the secret key used in production secret!
 # should use os.environ['DB_PASSWORD'] in Production
-DATABASES['default'] =  dj_database_url.config()
-
+try:
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+except:
+    pass
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/
