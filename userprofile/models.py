@@ -8,15 +8,59 @@ class UserProfileData(models.Model):
 
     def __str__(self):
         return str(self.userID.username)
-    
 
-class AppliancePreferences(models.Model):
-    homeID = models.IntegerField(primary_key=True)
-    applianceID = models.IntegerField()
-    userID = models.ForeignKey('UserProfileData')
-    applianceName = models.CharField(max_length=50)
-    timeLapseAlarm = models.IntegerField()
+class ApplianceInfo(models.Model):
+    applianceSupplierID = models.AutoField(primary_key=True)
+    applianceNameSupplier = models.CharField(max_length=50)
+    applianceDescription = models.TextField(max_length=300)
+    applianceHeight = models.IntegerField()
+    applianceWidth = models.IntegerField()
+    applianceDepth = models.IntegerField()
     
     def __str__(self):
         return str(self.applianceName)
+
+class HomeInfo(models.Model):
+    homeID = models.AutoField(primary_key=True)
+    homeSquareFeet = models.IntegerField()
+    homeStreetAddress = models.CharField(max_length=50)
+    homeCity = models.CharField(max_length=50)
+    homeZIP = models.IntegerField(max_length=5)
+    homeState = models.CharField(max_length=2)
+
+    def __str__(self):
+        return str(self.homeStreetAddress)
+
+class RoomInfo(models.Model):
+    roomID = models.AutoField(primary_key=True)
+    roomName = models.CharField(max_length=50)
+    homeID = models.ForeignKey(HomeInfo)
+
+    def __str__(self):
+        return str(self.roomName)
+
+class CurrentAppliances(models.Model):
+    #This is the table we will store AwareHome 
+    sessionID = models.AutoField(primary_key=True)
+    applianceSupplierID = models.ForeignKey(ApplianceInfo)
+    applianceStartTime = models.TimeField()  #time the appliance turned on
+    applianceEndTime = models.TimeField()  #if null the appliance is still on
+
+    def __str__(self):
+        return str(self.applianceSupplierID)
+
+
+class AppliancePreferences(models.Model):
+    inputID = models.AutoField(primary_key=True)
+    homeID = models.ForeignKey(HomeInfo)
+    roomID = models.ForeignKey(RoomInfo)
+    applianceSupplierID = models.ForeignKey(ApplianceInfo)
+    userID = models.ForeignKey('UserProfileData')
+    applianceName = models.CharField(max_length=50)
+    timeLapseAlarm = models.IntegerField()
+
     
+    def __str__(self):
+        return str(self.applianceName)
+
+

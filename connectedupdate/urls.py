@@ -6,7 +6,9 @@ from rest_framework import routers
 router = routers.DefaultRouter()
 router.register(r'users',views.UserViewSet)
 router.register(r'groups', views.GroupViewSet)
-router.register(r'appliances', views.ApplianceViewSet)
+router.register(r'home_appliances_list', views.HomeApplianceViewSet)
+router.register(r'supplier_appliances_list', views.SupplierApplianceViewSet)
+router.register(r'home_information_list', views.HomeInfoViewSet)
 
 
 #API via automatic URL routing

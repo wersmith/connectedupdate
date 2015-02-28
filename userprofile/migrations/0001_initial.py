@@ -13,12 +13,63 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='ApplianceInfo',
+            fields=[
+                ('applianceSupplierID', models.AutoField(serialize=False, primary_key=True)),
+                ('applianceNameSupplier', models.CharField(max_length=50)),
+                ('applianceDescription', models.TextField(max_length=300)),
+                ('applianceHeight', models.IntegerField()),
+                ('applianceWidth', models.IntegerField()),
+                ('applianceDepth', models.IntegerField()),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='AppliancePreferences',
             fields=[
-                ('homeID', models.IntegerField(unique=True, serialize=False, primary_key=True)),
-                ('applianceID', models.IntegerField()),
+                ('inputID', models.AutoField(serialize=False, primary_key=True)),
                 ('applianceName', models.CharField(max_length=50)),
                 ('timeLapseAlarm', models.IntegerField()),
+                ('applianceSupplierID', models.ForeignKey(to='userprofile.ApplianceInfo')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='CurrentAppliances',
+            fields=[
+                ('sessionID', models.AutoField(serialize=False, primary_key=True)),
+                ('applianceStartTime', models.TimeField()),
+                ('applianceEndTime', models.TimeField()),
+                ('applianceSupplierID', models.ForeignKey(to='userprofile.ApplianceInfo')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='HomeInfo',
+            fields=[
+                ('homeID', models.AutoField(serialize=False, primary_key=True)),
+                ('homeSquareFeet', models.IntegerField()),
+                ('homeStreetAddress', models.CharField(max_length=50)),
+                ('homeCity', models.CharField(max_length=50)),
+                ('homeZIP', models.IntegerField(max_length=5)),
+                ('homeState', models.CharField(max_length=2)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='RoomInfo',
+            fields=[
+                ('roomID', models.AutoField(serialize=False, primary_key=True)),
+                ('roomName', models.CharField(max_length=50)),
+                ('homeID', models.ForeignKey(to='userprofile.HomeInfo')),
             ],
             options={
             },
@@ -35,6 +86,18 @@ class Migration(migrations.Migration):
             options={
             },
             bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='appliancepreferences',
+            name='homeID',
+            field=models.ForeignKey(to='userprofile.HomeInfo'),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='appliancepreferences',
+            name='roomID',
+            field=models.ForeignKey(to='userprofile.RoomInfo'),
+            preserve_default=True,
         ),
         migrations.AddField(
             model_name='appliancepreferences',
