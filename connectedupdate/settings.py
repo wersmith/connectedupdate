@@ -105,7 +105,8 @@ try:
        'PAGINATE_BY': 10
     }
 except:
-    pass
+    import traceback
+    print traceback.format_exc()
 
 
 try:
