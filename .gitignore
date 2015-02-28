@@ -1,6 +1,5 @@
 
 newvirtualenv
-
 *.pyc
 localsettings.py
 localflags.py

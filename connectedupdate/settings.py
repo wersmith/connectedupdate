@@ -29,7 +29,7 @@ if HEROKU:
     # https://docs.djangoproject.com/en/1.7/ref/settings/#databaseson
     import dj_database_url
     DATABASES={}
-    DATABASES['default'] =  dj_database_url.config(os.environ['DATABASE_URL'])
+    DATABASES['default'] =  dj_database_url.config()
 
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
