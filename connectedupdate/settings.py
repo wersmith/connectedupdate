@@ -31,6 +31,13 @@ if HEROKU:
     DATABASES={}
     DATABASES['default'] =  dj_database_url.config()
 
+
+    # Static files (CSS, JavaScript, Images)
+    # https://docs.djangoproject.com/en/1.7/howto/static-files/
+
+    STATIC_URL = '/static/'
+    STATIC_ROOT = 'staticfiles'
+
     BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
     STATICFILES_DIRS = (
@@ -98,12 +105,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.7/howto/static-files/
-
-STATIC_URL = '/static/'
-STATIC_ROOT = 'staticfiles'
 
 
 REST_FRAMEWORK = {
