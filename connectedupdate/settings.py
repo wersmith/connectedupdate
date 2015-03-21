@@ -73,7 +73,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'rest_framework.authtoken',
     'userprofile',
+    'rest_auth',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -108,11 +110,9 @@ USE_TZ = True
 
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': ('rest_framework.authentication.BasicAuthentication','rest_framework.authentication.SessionAuthentication',)
-    #'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    #'PAGINATE_BY': 10
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+   'PAGINATE_BY': 10
 }
-
 
 try:
     from localsettings import *
