@@ -5,7 +5,7 @@ class UserProfileData(models.Model):
     userID = models.OneToOneField(User)
     dob = models.DateField()
     dateJoined = models.DateField(auto_now_add=True)
-    displayname = models.CharField(max_length=20)
+    #displayname = models.CharField(max_length=50)
 
     def __str__(self):
         return str(self.userID.username)
@@ -28,7 +28,7 @@ class HomeInfo(models.Model):
     homeCity = models.CharField(max_length=50)
     homeZIP = models.IntegerField(max_length=5)
     homeState = models.CharField(max_length=2)
-    homeAPI_Url = models.CharField(max_length=75)
+    #homeAPI_Url = models.CharField(max_length=75)
 
     def __str__(self):
         return str(self.homeStreetAddress)
@@ -56,7 +56,7 @@ class AppliancePreferences(models.Model):
     inputID = models.AutoField(primary_key=True)
     homeID = models.ForeignKey(HomeInfo)
     roomID = models.ForeignKey(RoomInfo)
-    applianceSupplierID = models.ForeignKey(ApplianceInfo)
+    #applianceSupplierID = models.ForeignKey(ApplianceInfo)
     userID = models.ForeignKey(UserProfileData)
     applianceName = models.CharField(max_length=50)
     timeLapseAlarm = models.IntegerField()
