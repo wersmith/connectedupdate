@@ -2,7 +2,8 @@ from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from userprofile.serializers import UserSerializer, GroupSerializer, AppliancePreferenceSerializer, ApplianceSupplierInfoSerializer, HomeInfoSerializer
-from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo
+from userprofile.serializers import RoomInfoSerializer
+from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo, RoomInfo
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -41,5 +42,11 @@ class HomeInfoViewSet(viewsets.ModelViewSet):
     queryset = HomeInfo.objects.all()
     serializer_class = HomeInfoSerializer
 
+class RoomInfoViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows home information to be viewed or edited.
+    """
+    queryset = RoomInfo.objects.all()
+    serializer_class = RoomInfoSerializer
 
 

@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
 from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo
+from userprofile.models import RoomInfo
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,4 +28,8 @@ class HomeInfoSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = HomeInfo
 		depth = 2	
+
+class RoomInfoSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = RoomInfo
 
