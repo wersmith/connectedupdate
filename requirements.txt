@@ -1,4 +1,4 @@
-Django==1.7
+Django==1.7.2
 Markdown==2.6
 defusedxml==0.4.1
 dj-database-url==0.3.0
