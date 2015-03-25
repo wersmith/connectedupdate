@@ -10,6 +10,7 @@ router.register(r'home_appliances_list', views.HomeApplianceViewSet)
 router.register(r'supplier_appliances_list', views.SupplierApplianceViewSet)
 router.register(r'home_information_list', views.HomeInfoViewSet)
 router.register(r'room_information_list', views.RoomInfoViewSet)
+router.register(r'current_appliances', views.CurrentApplianceViewSet)
 
 
 #API via automatic URL routing

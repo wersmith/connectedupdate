@@ -41,16 +41,6 @@ class RoomInfo(models.Model):
     def __str__(self):
         return str(self.roomName)
 
-class CurrentAppliances(models.Model):
-    #This is the table we will store AwareHome 
-    sessionID = models.AutoField(primary_key=True)
-    applianceSupplierID = models.ForeignKey(ApplianceInfo)
-    applianceStartTime = models.TimeField()  #time the appliance turned on
-    applianceEndTime = models.TimeField()  #if null the appliance is still on
-
-    def __str__(self):
-        return str(self.applianceSupplierID)
-
 
 class AppliancePreferences(models.Model):
     inputID = models.AutoField(primary_key=True)
@@ -62,6 +52,17 @@ class AppliancePreferences(models.Model):
     timeLapseAlarm = models.IntegerField()
 
     
+    def __str__(self):
+        return str(self.applianceName)
+
+
+class CurrentAppliances(models.Model):
+    #This is the table we will store AwareHome 
+    sessionID = models.AutoField(primary_key=True)
+    applianceName = models.ForeignKey(AppliancePreferences)
+    applianceStartTime = models.TimeField(null=True)  #time the appliance turned on
+    applianceEndTime = models.TimeField(null=True, blank=True)  #if null the appliance is still on
+
     def __str__(self):
         return str(self.applianceName)
 
