@@ -11,7 +11,7 @@ router.register(r'supplier_appliances_list', views.SupplierApplianceViewSet)
 router.register(r'home_information_list', views.HomeInfoViewSet)
 router.register(r'room_information_list', views.RoomInfoViewSet)
 router.register(r'current_appliances', views.CurrentApplianceViewSet)
-
+router.register(r'appliance_timelapse', views.ApplianceTimeViewSet)
 
 #API via automatic URL routing
 urlpatterns = patterns('',

@@ -1,8 +1,9 @@
 from django.shortcuts import render
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
+from rest_framework import status
 from userprofile.serializers import UserSerializer, GroupSerializer, AppliancePreferenceSerializer, ApplianceSupplierInfoSerializer, HomeInfoSerializer
-from userprofile.serializers import RoomInfoSerializer, CurrentApplianceSerializer
+from userprofile.serializers import RoomInfoSerializer, CurrentApplianceSerializer, ApplianceTimeSerializer
 from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo, RoomInfo, CurrentAppliances
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -55,4 +56,15 @@ class CurrentApplianceViewSet(viewsets.ModelViewSet):
     """
     queryset = CurrentAppliances.objects.all()
     serializer_class = CurrentApplianceSerializer
+
+class ApplianceTimeViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint allows timelapse preference to be set
+    """
+    queryset = AppliancePreferences.objects.all()
+    serializer_class = ApplianceTimeSerializer
+
+
+
+
 

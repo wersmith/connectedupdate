@@ -29,7 +29,7 @@ class AppliancePreferenceSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AppliancePreferences
-        fields = ('homeID', 'applianceName','userID', 'timeLapseAlarm', 'roomID' )
+        fields = ('inputID','applianceName','homeID', 'userID', 'timeLapseAlarm', 'roomID' )
         depth = 1
         paginate_by = None
 
@@ -55,4 +55,13 @@ class CurrentApplianceSerializer(serializers.ModelSerializer):
 		model = CurrentAppliances
 		depth = 3
 		paginate_by = None
+
+
+class ApplianceTimeSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = AppliancePreferences
+        fields = ('inputID','applianceName', 'timeLapseAlarm' )
+        depth = 1
+        paginate_by = None
 
