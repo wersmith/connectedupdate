@@ -1,4 +1,5 @@
 from django.shortcuts import render
+import requests, sys
 from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import status
@@ -6,11 +7,11 @@ from userprofile.serializers import UserSerializer, GroupSerializer, AppliancePr
 from userprofile.serializers import RoomInfoSerializer, CurrentApplianceSerializer, ApplianceTimeSerializer
 from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo, RoomInfo, CurrentAppliances
 
+
 class UserViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows users to be viewed or edited.
     """
-
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -54,15 +55,35 @@ class CurrentApplianceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows current appliance information to be viewed or edited.
     """
+    
     queryset = CurrentAppliances.objects.all()
     serializer_class = CurrentApplianceSerializer
+
+    def update(self, request, *args, **kwargs):
+        print request
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 class ApplianceTimeViewSet(viewsets.ModelViewSet):
     """
     API endpoint allows timelapse preference to be set
     """
+
     queryset = AppliancePreferences.objects.all()
     serializer_class = ApplianceTimeSerializer
+
+    def update(self, request, *args, **kwargs):
+        print request.body
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+        serializer = self.get_serializer(instance, data=request.data, partial=partial)
+        serializer.is_valid(raise_exception=True)
+        self.perform_update(serializer)
+        return Response(serializer.data)
 
 
 
