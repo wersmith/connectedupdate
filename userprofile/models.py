@@ -60,8 +60,8 @@ class CurrentAppliances(models.Model):
     #This is the table we will store AwareHome 
     sessionID = models.AutoField(primary_key=True)
     applianceName = models.ForeignKey(AppliancePreferences)
-    applianceStartTime = models.TimeField(null=True)  #time the appliance turned on
-    applianceEndTime = models.TimeField(null=True, blank=True)  #if null the appliance is still on
+    applianceTime = models.TimeField(null=True)  #time the appliance turned on
+    applianceState = models.IntegerField()  #says if the appliance is on or off
 
     def __str__(self):
         return str(self.applianceName)

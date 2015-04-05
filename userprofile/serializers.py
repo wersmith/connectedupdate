@@ -53,7 +53,8 @@ class RoomInfoSerializer(serializers.ModelSerializer):
 class CurrentApplianceSerializer(serializers.ModelSerializer):
 	class Meta:
 		model = CurrentAppliances
-		depth = 3
+		fields = ( 'sessionID','applianceName', 'applianceTime', 'applianceState' )
+		depth = 1
 		paginate_by = None
 
 
