@@ -14,6 +14,7 @@ class UserViewSet(viewsets.ModelViewSet):
     """
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    filter_fields=('username',)
 
 class GroupViewSet(viewsets.ModelViewSet):
     """
@@ -58,6 +59,7 @@ class CurrentApplianceViewSet(viewsets.ModelViewSet):
     
     queryset = CurrentAppliances.objects.all()
     serializer_class = CurrentApplianceSerializer
+    filter_fields=('sessionID', 'applianceName','applianceTime','applianceState', )
 
     # def update(self, request, *args, **kwargs):
     #     print request
@@ -72,6 +74,7 @@ class ApplianceTimeViewSet(viewsets.ModelViewSet):
     """
     API endpoint allows timelapse preference to be set
     """
+    filter_fields=('inputID','applianceName', 'timeLapseAlarm', 'homeID', )
 
     queryset = AppliancePreferences.objects.all()
     serializer_class = ApplianceTimeSerializer

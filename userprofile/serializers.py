@@ -51,18 +51,24 @@ class RoomInfoSerializer(serializers.ModelSerializer):
 		paginate_by = None
 
 class CurrentApplianceSerializer(serializers.ModelSerializer):
+	
+	applianceName = serializers.PrimaryKeyRelatedField(queryset=AppliancePreferences.objects.all())
+
+
 	class Meta:
 		model = CurrentAppliances
 		fields = ( 'sessionID','applianceName', 'applianceTime', 'applianceState' )
-		depth = 1
+		depth = 2
 		paginate_by = None
 
 
 class ApplianceTimeSerializer(serializers.ModelSerializer):
 
+    homeID = serializers.PrimaryKeyRelatedField(queryset=HomeInfo.objects.all())
+
     class Meta:
         model = AppliancePreferences
-        fields = ('inputID','applianceName', 'timeLapseAlarm' )
+        fields = ('inputID','applianceName', 'timeLapseAlarm', 'homeID')
         depth = 1
         paginate_by = None
 
