@@ -10,7 +10,7 @@ router.register(r'home_appliances_list', views.HomeApplianceViewSet)
 router.register(r'supplier_appliances_list', views.SupplierApplianceViewSet)
 router.register(r'home_information_list', views.HomeInfoViewSet)
 router.register(r'room_information_list', views.RoomInfoViewSet)
-router.register(r'set_current_appliances', views.SetCurrentApplianceViewSet)
+router.register(r'post_current_appliances', views.SetCurrentApplianceViewSet)
 router.register(r'get_current_appliances', views.GetCurrentApplianceViewSet)
 router.register(r'appliance_timelapse', views.ApplianceTimeViewSet)
 
