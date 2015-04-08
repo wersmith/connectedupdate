@@ -4,7 +4,7 @@ from django.contrib.auth.models import User, Group
 from rest_framework import viewsets
 from rest_framework import status
 from userprofile.serializers import UserSerializer, GroupSerializer, AppliancePreferenceSerializer, ApplianceSupplierInfoSerializer, HomeInfoSerializer
-from userprofile.serializers import RoomInfoSerializer, CurrentApplianceSerializer, ApplianceTimeSerializer
+from userprofile.serializers import RoomInfoSerializer, GetCurrentApplianceSerializer, SetCurrentApplianceSerializer, ApplianceTimeSerializer
 from userprofile.models import AppliancePreferences, ApplianceInfo, HomeInfo, RoomInfo, CurrentAppliances
 
 
@@ -52,13 +52,13 @@ class RoomInfoViewSet(viewsets.ModelViewSet):
     queryset = RoomInfo.objects.all()
     serializer_class = RoomInfoSerializer
 
-class CurrentApplianceViewSet(viewsets.ModelViewSet):
+class SetCurrentApplianceViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows current appliance information to be viewed or edited.
     """
     
     queryset = CurrentAppliances.objects.all()
-    serializer_class = CurrentApplianceSerializer
+    serializer_class = SetCurrentApplianceSerializer
     filter_fields=('sessionID', 'applianceName','applianceTime','applianceState', )
 
     # def update(self, request, *args, **kwargs):
@@ -69,6 +69,17 @@ class CurrentApplianceViewSet(viewsets.ModelViewSet):
     #     serializer.is_valid(raise_exception=True)
     #     self.perform_update(serializer)
     #     return Response(serializer.data)
+
+
+class GetCurrentApplianceViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows current appliance information to be viewed or edited.
+    """
+    
+    queryset = CurrentAppliances.objects.all()
+    serializer_class = GetCurrentApplianceSerializer
+    filter_fields=('sessionID', 'applianceName','applianceTime','applianceState', )
+
 
 class ApplianceTimeViewSet(viewsets.ModelViewSet):
     """
