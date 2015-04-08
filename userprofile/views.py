@@ -1,6 +1,7 @@
 from django.shortcuts import render
 import requests, sys
 from django.contrib.auth.models import User, Group
+from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import status
 from userprofile.serializers import UserSerializer, GroupSerializer, AppliancePreferenceSerializer, ApplianceSupplierInfoSerializer, HomeInfoSerializer
@@ -90,14 +91,14 @@ class ApplianceTimeViewSet(viewsets.ModelViewSet):
     queryset = AppliancePreferences.objects.all()
     serializer_class = ApplianceTimeSerializer
 
-    # def update(self, request, *args, **kwargs):
-    #     print request.body
-    #     partial = kwargs.pop('partial', False)
-    #     instance = self.get_object()
-    #     serializer = self.get_serializer(instance, data=request.data, partial=partial)
-    #     serializer.is_valid(raise_exception=True)
-    #     self.perform_update(serializer)
-    #     return Response(serializer.data)
+    def update(self, request, *args, **kwargs):
+         print request.body
+         partial = kwargs.pop('partial', False)
+         instance = self.get_object()
+         serializer = self.get_serializer(instance, data=request.data, partial=partial)
+         serializer.is_valid(raise_exception=True)
+         self.perform_update(serializer)
+         return Response(serializer.data)
 
 
 
