@@ -77,7 +77,19 @@ class GetCurrentApplianceViewSet(viewsets.ModelViewSet):
     API endpoint that allows current appliance information to be viewed or edited.
     """
     
-    queryset = CurrentAppliances.objects.all()
+
+    #most recent filter
+    # queryset = CurrentAppliances.objects.all()
+    queryset_all = CurrentAppliances.objects.all().order_by('-applianceTime')
+    queryset_ids = []
+    found_appliances = []
+    for appliance in queryset_all:
+        if appliance.applianceName not in found_appliances:
+            found_appliances.append(appliance.applianceName)
+            queryset_ids.append(appliance.sessionID)
+
+    queryset = CurrentAppliances.objects.filter(sessionID__in = queryset_ids)
+
     serializer_class = GetCurrentApplianceSerializer
     filter_fields=('sessionID', 'applianceName','applianceTime','applianceState', )
 
