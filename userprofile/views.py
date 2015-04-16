@@ -80,7 +80,7 @@ class GetCurrentApplianceViewSet(viewsets.ModelViewSet):
 
     #most recent filter
     # queryset = CurrentAppliances.objects.all()
-    queryset_all = CurrentAppliances.objects.all().order_by('-applianceTime')
+    queryset_all = CurrentAppliances.objects.all().order_by('-sessionID')
     queryset_ids = []
     found_appliances = []
     for appliance in queryset_all:
